@@ -48,10 +48,10 @@ uint8_t fp = 0;
 void Init() {
     // 1. Clean intruction stack
     sp = 0;
-    memset(stack, 0, STACK_SIZE);
+    memset(stack, 0, STACK_SIZE * sizeof(uint64_t));
 
     // 2. TODO - fill const pull
-    memset(const_pull, 0, CONST_PULL_SIZE);
+    memset(const_pull, 0, CONST_PULL_SIZE * sizeof(uint64_t));
 
     // 3. Clean Frame
     // TODO - support dynamic frames 

@@ -16,7 +16,7 @@ void RunTest(ExecType type, int it) {
         case (ONE_TEST) : {
             Test(it);
 #ifdef LOG_ON
-            printf("test %d executed\n", it);
+            printf("test %d executed\r\n", it);
 #endif
             break;
         }
@@ -27,7 +27,7 @@ void RunTest(ExecType type, int it) {
                 }
             }
 #ifdef LOG_ON
-            printf("defatult sequence - done\n");
+            printf("defatult sequence - done\r\n");
 #endif
             break;
         }
@@ -39,7 +39,7 @@ void RunTest(ExecType type, int it) {
                 Test(id);
             }
 #ifdef LOG_ON
-            printf("randomized testing - done\n");
+            printf("randomized testing - done\r\n");
 #endif
             break;
         }
@@ -62,17 +62,17 @@ void Test(int id) {
             uint8_t rand_value = (rand());
             const_pull[0] = rand_value;
 #ifdef LOG_ON
-            printf("Enter to iconst_0 test\n");
-            printf("  rand = %d\n", rand_value);
-            printf("  sp = %ld\n", prev_sp);
+            printf("Enter to iconst_0 test\r\n");
+            printf("  rand = %d\r\n", rand_value);
+            printf("  sp = %ld\r\n", prev_sp);
 #endif
 
             // Execute bc
             Execute(bytecodes);
 #ifdef LOG_ON
-            printf("Exit from execution iconst_0 test\n");
-            printf("  stack[sp] = %d\n", stack[GetSP()]);
-            printf("  sp = %ld\n", GetSP());
+            printf("Exit from execution iconst_0 test\r\n");
+            printf("  stack[sp] = %ld\r\n", stack[GetSP()]);
+            printf("  sp = %ld\r\n", GetSP());
 #endif
             assert(GetSP() == prev_sp + 1);
             assert(stack[GetSP()] == rand_value);
@@ -95,17 +95,17 @@ void Test(int id) {
 	    assert(prev_sp == GetSP());
 	    stack[prev_sp] = rv2; 
 #ifdef LOG_ON
-            printf("Enter to iadd test\n");
-            printf("  rv1 = %u,  rv2 = %u\n", rv1, rv2);
-            printf("  sp = %lu\n", prev_sp);
+            printf("Enter to iadd test\r\n");
+            printf("  rv1 = %u,  rv2 = %u\r\n", rv1, rv2);
+            printf("  sp = %lu\r\n", prev_sp);
 #endif
 
             // Execute bc
             Execute(bytecodes);
 #ifdef LOG_ON
-            printf("Exit from execution iadd test\n");
-            printf("  stack[sp] = %u\n", stack[GetSP()]);
-            printf("  sp = %lu\n", GetSP());
+            printf("Exit from execution iadd test\r\n");
+            printf("  stack[sp] = %lu\r\n", stack[GetSP()]);
+            printf("  sp = %lu\r\n", GetSP());
 #endif
             assert(GetSP() == prev_sp - 1);
             assert((uint32_t) stack[GetSP()] == rv1 + rv2);
@@ -115,7 +115,7 @@ void Test(int id) {
 
     default:
 #ifdef LOG_ON
-        printf("unsupported opcode %d \n", id);
+        printf("unsupported opcode %d \r\n", id);
 #endif
         break;
     }
